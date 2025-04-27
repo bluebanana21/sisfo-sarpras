@@ -10,11 +10,12 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-Route::get('/register', [AuthController::class, 'showRegister']);
+ Route::get('/register', [AuthController::class, 'showRegister']);
 
 Route::post('/register', [AuthController::class, 'register']);
 
-Route::get('/login', function () {
-    return view('auth/login');
-});
+
+    Route::get('/login', [AuthController::class, 'showLogin']);
+
+    Route::post('/login', [AuthController::class, 'login']);
 

@@ -13,6 +13,7 @@
     <div class="flex items-center justify-center m-auto h-screen">
 
         <div class="bg-white rounded-xl max-w-2xl w-full flex items-center justify-center p-4">
+
             <form action="" method="post" class="max-w-xl w-full">
                 <div class="grid grid-flow-row-dense grid-cols-3 ">
                     <h1 class="col-span-2 text-2xl flex items-center font-bold">Sign up as Administrator</h1>

@@ -19,25 +19,31 @@ class AuthController extends Controller
     public function register(Request $request)
     {
 
-    logger('Register called');
-
     $request->validate([
-        'username' => 'required|string|unique|max:255',
-        'email' => 'required|string|email|unique|max:255',
+        'username' => 'required|string|unique:admins,username|max:255',
+        'email' => 'required|email|unique:admins,email|max:255',
         'password' => 'required|string',
     ]);
-
-    logger('Validation passed');
 
     $admin = Admin::create([
         'username'=> $request->username,
         'email'=> $request->email,
         'password'=> Hash::make($request->password),
         'role' => 'admin',
-    ]);
+        ]);
 
-    logger('Admin created', ['admin' => $admin]);
+        echo("shit worked fam");
 
     return response()->json(['message' => 'Admin successfully registered'], 201);
+    }
+
+    public function showLogin(){
+        return view('auth/login');
+    }
+
+    public function login(Request $request){
+    }
+
+    public function logout(){
     }
 }
