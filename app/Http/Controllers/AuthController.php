@@ -13,7 +13,7 @@ class AuthController extends Controller
 {
     public function showRegister(){
 
-        return view('auth/register');
+        return view('pages/auth/register');
     }
 
     public function register(Request $request)
@@ -32,18 +32,38 @@ class AuthController extends Controller
         'role' => 'admin',
         ]);
 
-        echo("shit worked fam");
-
-    return response()->json(['message' => 'Admin successfully registered'], 201);
+        $token = $admin->createToken('auth_token')->plainTextToken;
+        return response()->json([
+            'access_token' => $token,
+            'token_type' => 'Bearer',
+        ]);
     }
 
     public function showLogin(){
-        return view('auth/login');
+        return view('pages/auth/login');
     }
 
     public function login(Request $request){
+        $request->validate([
+            'email'=> 'required|string|email',
+            'password'=> 'required|string',
+
+        ]);
+
+        $credentials = $request->only('email', 'password');
+        if (!Auth::attempt($credentials)) {
+            return response()->json(['message'=>'unauthorized'], 401);
+        }
+        $admin = Auth::user();
+        $token = $admin->createToken('auth_token')->plainTextToken;
+        return response()->json([
+            'access_token' => $token,
+            'token_type' => 'Bearer'
+        ]);
     }
 
-    public function logout(){
+    public function logout(Request $request){
+        $request->user()->currentAccessToken()->delete();
+        return response()->json(['message'=>'successfully logged out']);
     }
 }

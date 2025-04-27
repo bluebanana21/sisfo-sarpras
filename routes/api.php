@@ -12,10 +12,11 @@ Route::get('/user', function (Request $request) {
 
  Route::get('/register', [AuthController::class, 'showRegister']);
 
-Route::post('/register', [AuthController::class, 'register']);
+Route::post('/register', [AuthController::class, 'register'])->name('register');
 
 
     Route::get('/login', [AuthController::class, 'showLogin']);
 
     Route::post('/login', [AuthController::class, 'login']);
 
+Route::get('/overview', [AdminController::class, 'overview']);
