@@ -17,6 +17,10 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('role');
+            $table->unsignedBigInteger('class_code')->nullable();
+
+            $table->foreign('class_code')->references('id')->on('school_classes');
             $table->rememberToken();
             $table->timestamps();
         });

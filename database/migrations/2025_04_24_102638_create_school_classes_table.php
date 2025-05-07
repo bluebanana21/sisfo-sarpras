@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('school_classes', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->uuid('class_id');
+            $table->string('class_code');
             $table->timestamps();
         });
     }

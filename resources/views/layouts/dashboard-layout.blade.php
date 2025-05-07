@@ -10,7 +10,8 @@
 
 </head>
 
-<body>
+<body class="bg-neutral-200">
+    @include('components.sidebar')
     @yield('content')
 </body>
 

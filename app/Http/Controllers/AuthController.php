@@ -44,23 +44,21 @@ class AuthController extends Controller
     }
 
     public function login(Request $request){
-        $request->validate([
+        $validated = $request->validate([
             'email'=> 'required|string|email',
             'password'=> 'required|string',
 
         ]);
 
-        $credentials = $request->only('email', 'password');
-        if (!Auth::attempt($credentials)) {
-            return response()->json(['message'=>'unauthorized'], 401);
+        if (Auth::attempt($validated)) {
+            $request->session()->regenerate();
+
+            return redirect()->intended('/dashboard/overview');
         }
-        $admin = Auth::user();
-        $token = $admin->createToken('auth_token')->plainTextToken;
-        return response()->json([
-            'access_token' => $token,
-            'token_type' => 'Bearer'
-        ]);
-    }
+
+        return back()->with('loginErrpr', 'Login Failed!');
+
+     }
 
     public function logout(Request $request){
         $request->user()->currentAccessToken()->delete();

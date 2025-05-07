@@ -15,12 +15,15 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('description');
-            $table->string('image');
-            $table->foreignId('cat_id')->nullable()->constrained('categories')->onDelete('cascade');
-            $table->foreignId('subcat_id')->nullable()->constrained('sub_categories')->onDelete('cascade');
-
+            $table->string('image_url');
             $table->string('assigned_num');
-            $table->string('type');
+            $table->unsignedBigInteger('item_type_id');
+            $table->unsignedBigInteger('subcategory_id');
+            $table->enum('status', ['available', 'borrowed', 'damaged']);
+
+            $table->foreign('item_type_id')->references('id')->on('item_types');
+            $table->foreign('subcategory_id')->references('id')->on('sub_categories');
+
             $table->timestamps();
        });
     }
