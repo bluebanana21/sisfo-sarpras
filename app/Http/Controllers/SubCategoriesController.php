@@ -32,13 +32,26 @@ class SubCategoriesController extends Controller
     }
 
     public function updateSubcat (Request $request, $id){
-         $validatedData = $request->validate([
-            'name'=>['required'],
-        ]);
-        $category = SubCategory::find($id);
-        $category->update($validatedData);
-        return response()->json(['message'=>'succesfull update', 'category'=>$validatedData], 204);
+    // Validate input: optional but at least one required
+    $validatedData = $request->validate([
+        'name' => ['sometimes', 'string'],
+        'category_id' => ['sometimes', 'integer'],
+    ]);
+
+    // Check if both fields are missing
+    if (empty($validatedData)) {
+        return response()->json([
+            'message' => 'At least one of name or category_id must be provided.'
+        ], 422); // Unprocessable Entity
     }
 
+    $category = SubCategory::findOrFail($id);
+    $category->update($validatedData);
+
+    return response()->json([
+        'message' => 'Successful update',
+        'category' => $category
+    ], 200);
+    }
 
 }
