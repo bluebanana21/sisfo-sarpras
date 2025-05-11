@@ -9,11 +9,10 @@ class Item extends Model
     protected $fillable = [
         'name',
         'description',
-        'image',
+        'image_url',
         'assigned_num',
-        'type',
+        'item_type_id',
+        'subcategory_id',
         'status',
-        'category_id',
-        'subcat_id',
     ];
 }

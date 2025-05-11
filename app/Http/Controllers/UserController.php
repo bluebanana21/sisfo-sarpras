@@ -11,7 +11,13 @@ class UserController extends Controller
     public function getUser(){
         $data = User::all();
 
-        return response()->json(['categories' => $data], 200);
+        return response()->json(['Users' => $data], 200);
+    }
+
+    public function getUserById(Request $request, $id){
+        $data = User::findOrFail($id);
+
+        return response()->json(['User' => $data], 200);
     }
 
     public function createUser(Request $request){
@@ -21,7 +27,7 @@ class UserController extends Controller
             'email' => ['required|email|unique:users'],
             'password' => ['required'],
             'role' => ['required'],
-            'class_id' => ['required'],
+            'class_code' => ['required'],
         ]);
 
         User::create($validatedData);

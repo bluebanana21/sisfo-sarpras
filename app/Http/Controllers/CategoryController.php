@@ -8,18 +8,36 @@ use function GuzzleHttp\json_decode;
 
 class CategoryController extends Controller
 {
-    public function getCategory(){
+    public function getAll(){
         $data = Category::all();
 
         return response()->json(['categories' => $data], 200);
     }
 
-    public function createCategory(Request $request){
+    public function createCat(Request $request){
         $validatedData = $request->validate([
             'name'=>['required'],
-            'category_id' => ['required'],
         ]);
 
         Category::create($validatedData);
+
+        return response()->json(['message'=>'succesfull', 'category'=>$validatedData], 201);
     }
+
+    public function deleteCat(Request $request, $id){
+        $category = Category::find($id);
+        $category->delete();
+
+        return response()->json(['message'=> 'succesfully delete']);
+    }
+
+    public function updateCat(Request $request, $id){
+         $validatedData = $request->validate([
+            'name'=>['required'],
+        ]);
+        $category = Category::find($id);
+        $category->update($validatedData);
+        return response()->json(['message'=>'succesfull update', 'category'=>$validatedData], 204);
+    }
+
 }

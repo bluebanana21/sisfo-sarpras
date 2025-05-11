@@ -18,10 +18,20 @@ Route::get('/register', [AuthController::class, 'showRegister']);
 // END OF AUTH
 
 // DASHBOARD ROUTES
-Route::get('/dashboard/overview', [AdminController::class, 'overview']);
+//
+Route::middleware(['auth'])->group(function () {
+    Route::get('/dashboard/overview', [AdminController::class, 'overview']);
 
-Route::get('/dashboard/items', [AdminController::class, 'overview']);
+    Route::get('/dashboard/items', [AdminController::class, 'items']);
 
-Route::get('/dashboard/users', [AdminController::class, 'overview']);
+    Route::get('/dashboard/users', [AdminController::class, 'users']);
 
+    Route::get('/dashboard/borrows', [AdminController::class, 'borrows']);
+
+    Route::get('/dashboard/returns', [AdminController::class, 'returns']);
+
+    Route::get('/dashboard/categories', [AdminController::class, 'categories']);
+
+    Route::get('/dashboard/subcategories', [AdminController::class, 'subcategories']);
+});
 
