@@ -49,7 +49,7 @@ Route::get('/users/{id}', [UserController::class. 'getById']);
 
 Route::post('/users/create', [UserController::class, 'createUsers']);
 
-Route::delete('/users/delete', [UserController::class, 'deleteUsers']);
+Route::delete('/users/delete/{id}', [UserController::class, 'deleteUsers']);
 
 Route::put('/users/update/{id}', [UserController::class,'updateUsers']);
 
@@ -72,7 +72,7 @@ Route::get('/subcat/{id}', [SubCategoriesController::class. 'getById']);
 
 Route::post('/subcat/create', [SubCategoriesController::class, 'createSubcat']);
 
-Route::delete('/subcat/delete', [SubCategoriesController::class, 'deleteSubcat']);
+Route::delete('/subcat/delete/{id}', [SubCategoriesController::class, 'deleteSubcat']);
 
 Route::put('/subcat/update/{id}', [SubCategoriesController::class,'updateSubcat']);
 

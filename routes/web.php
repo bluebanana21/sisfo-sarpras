@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
@@ -30,8 +31,39 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/dashboard/returns', [AdminController::class, 'returns']);
 
-    Route::get('/dashboard/categories', [AdminController::class, 'categories']);
+    Route::get('/dashboard/categories', [CategoryController::class, 'categories']);
 
     Route::get('/dashboard/subcategories', [AdminController::class, 'subcategories']);
+
+    // CREATION FORMS
+
+    Route::get('/dashboard/overview/create', [AdminController::class, 'overview']);
+
+    Route::get('/dashboard/items/create', [AdminController::class, 'items']);
+
+    Route::get('/dashboard/users/create', [AdminController::class, 'users']);
+
+    Route::get('/dashboard/borrows/create', [AdminController::class, 'borrows']);
+
+    Route::get('/dashboard/returns/create', [AdminController::class, 'returns']);
+
+    Route::get('/dashboard/categories/create', [CategoryController::class, 'categories']);
+
+    Route::get('/dashboard/subcategories/create', [AdminController::class, 'subcategories']);
+
+    // EDIT FORMS
+    Route::get('/dashboard/overview/edit/{id}', [AdminController::class, 'overview']);
+
+    Route::get('/dashboard/items/edit/{id}', [AdminController::class, 'items']);
+
+    Route::get('/dashboard/users/edit/{id}', [AdminController::class, 'users']);
+
+    Route::get('/dashboard/borrows/edit/{id}', [AdminController::class, 'borrows']);
+
+    Route::get('/dashboard/returns/edit/{id}', [AdminController::class, 'returns']);
+
+    Route::get('/dashboard/categories/edit/{id}', [CategoryController::class, 'categories']);
+
+    Route::get('/dashboard/subcategories/edit/{id}', [AdminController::class, 'subcategories']);
 });
 
