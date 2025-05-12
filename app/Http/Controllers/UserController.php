@@ -33,14 +33,14 @@ class UserController extends Controller
 
         User::create($validatedData);
 
-        return response()->json(['success' => $validatedData], 201);
+        return redirect()->route('users');
     }
 
     public function deleteUser($id){
         $user = User::findOrFail($id);
         $user->delete();
 
-        return response()->json(['message'=>'user succesfully deleted']);
+        return redirect()->route('users');
     }
 
     public function updateUser(Request $request, $id){
@@ -66,10 +66,7 @@ class UserController extends Controller
     $user = User::findOrFail($id);
     $user->update($validatedData);
 
-    return response()->json([
-        'message' => 'Successful update',
-        'user' => $user
-    ], 200);
+        return redirect()->route('users');
     }
 
 }

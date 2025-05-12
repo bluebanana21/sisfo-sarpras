@@ -23,7 +23,7 @@
         <ul class="space-y-2 font-medium">
             <!-- Overview -->
             <li>
-                <a href="#"
+                <a href="{{route('overview')}}"
                     class="flex items-center p-2 text-white rounded-lg group hover:bg-white hover:text-blue-700 transition-colors duration-300 ease-in-out">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-current" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor" stroke-width="2">
@@ -38,7 +38,7 @@
 
             <!-- Items -->
             <li>
-                <a href="#"
+                <a href="{{route('items')}}"
                     class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
 
                     <svg xmlns="http://www.w3.org/2000/svg"
@@ -53,7 +53,7 @@
 
             <!-- Users -->
             <li>
-                <a href="#"
+                <a href="{{route('users')}}"
                     class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
 
                     <svg xmlns="http://www.w3.org/2000/svg"
@@ -69,7 +69,7 @@
 
             <!-- Borrows -->
             <li>
-                <a href="#"
+                <a href="{{route('borrows')}}"
                     class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
 
 
@@ -85,7 +85,7 @@
 
             <!-- Returns -->
             <li>
-                <a href="#"
+                <a href="{{route('returns')}}"
                     class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
 
 
@@ -132,7 +132,7 @@
             </li>
             <!-- Categories -->
             <li>
-                <a href="#"
+                <a href="{{route('categories')}}"
                     class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                     <svg xmlns="http://www.w3.org/2000/svg"
                         class=" text-gray-500 group-hover:text-gray-900 dark:group-hover:text-white w-6 h-6" fill="none"
@@ -146,7 +146,7 @@
 
             <!-- Sub-Categories -->
             <li>
-                <a href="#"
+                <a href="{{route('subcategories')}}"
                     class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                     <svg xmlns="http://www.w3.org/2000/svg"
                         class=" text-gray-500 group-hover:text-gray-900 dark:group-hover:text-white w-6 h-6" <path

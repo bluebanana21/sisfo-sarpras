@@ -21,19 +21,19 @@ Route::get('/register', [AuthController::class, 'showRegister']);
 // DASHBOARD ROUTES
 //
 Route::middleware(['auth'])->group(function () {
-    Route::get('/dashboard/overview', [AdminController::class, 'overview']);
+    Route::get('/dashboard/overview', [AdminController::class, 'overview'])->name('overview');
 
-    Route::get('/dashboard/items', [AdminController::class, 'items']);
+    Route::get('/dashboard/items', [AdminController::class, 'items'])->name('items');
 
-    Route::get('/dashboard/users', [AdminController::class, 'users']);
+    Route::get('/dashboard/users', [AdminController::class, 'users'])->name('users');
 
-    Route::get('/dashboard/borrows', [AdminController::class, 'borrows']);
+    Route::get('/dashboard/borrows', [AdminController::class, 'borrows'])->name('borrows');
 
-    Route::get('/dashboard/returns', [AdminController::class, 'returns']);
+    Route::get('/dashboard/returns', [AdminController::class, 'returns'])->name('returns');
 
-    Route::get('/dashboard/categories', [CategoryController::class, 'categories']);
+    Route::get('/dashboard/categories', [CategoryController::class, 'categories'])->name('categories');
 
-    Route::get('/dashboard/subcategories', [AdminController::class, 'subcategories']);
+    Route::get('/dashboard/subcategories', [AdminController::class, 'subcategories'])->name('subcategories');
 
     // CREATION FORMS
 
@@ -41,7 +41,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/dashboard/items/create', [AdminController::class, 'items']);
 
-    Route::get('/dashboard/users/create', [AdminController::class, 'users']);
+    Route::get('/dashboard/users/create', [AdminController::class, 'createUser'])->name('createUser');
 
     Route::get('/dashboard/borrows/create', [AdminController::class, 'borrows']);
 
@@ -56,7 +56,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/dashboard/items/edit/{id}', [AdminController::class, 'items']);
 
-    Route::get('/dashboard/users/edit/{id}', [AdminController::class, 'users']);
+    Route::get('/dashboard/users/edit/{id}', [AdminController::class, 'editUsers']);
 
     Route::get('/dashboard/borrows/edit/{id}', [AdminController::class, 'borrows']);
 

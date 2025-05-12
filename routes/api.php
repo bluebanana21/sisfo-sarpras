@@ -47,7 +47,7 @@ Route::get('/users', [UserController::class, 'getAll']);
 
 Route::get('/users/{id}', [UserController::class. 'getById']);
 
-Route::post('/users/create', [UserController::class, 'createUser']);
+Route::post('/users/create', [UserController::class, 'createUser'])->name('api.users.create');
 
 Route::delete('/users/delete/{id}', [UserController::class, 'deleteUser']);
 
