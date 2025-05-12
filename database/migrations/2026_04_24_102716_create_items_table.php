@@ -21,8 +21,8 @@ return new class extends Migration
             $table->unsignedBigInteger('subcategory_id');
             $table->enum('status', ['available', 'borrowed', 'damaged']);
 
-            $table->foreign('item_type_id')->references('id')->on('item_types');
-            $table->foreign('subcategory_id')->references('id')->on('sub_categories');
+            $table->foreign('item_type_id')->references('id')->on('item_types')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreign('subcategory_id')->references('id')->on('sub_categories')->cascadeOnUpdate()->cascadeOnDelete();
 
             $table->timestamps();
        });

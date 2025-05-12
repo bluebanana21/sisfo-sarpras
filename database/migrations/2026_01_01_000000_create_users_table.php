@@ -20,7 +20,7 @@ return new class extends Migration
             $table->enum('role', ['admin', 'student', 'teacher']);
             $table->string('class_code')->nullable();
 
-            $table->foreign('class_code')->references('class_code')->on('school_classes');
+            $table->foreign('class_code')->references('class_code')->on('school_classes')->cascadeOnUpdate()->nullOnDelete();
             $table->rememberToken();
             $table->timestamps();
         });

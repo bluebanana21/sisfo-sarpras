@@ -10,4 +10,5 @@ class SubCategory extends Model
         'name',
         'category_id',
     ];
+
 }

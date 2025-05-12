@@ -19,8 +19,8 @@ return new class extends Migration
             $table->enum('approval_status', ['pending', 'approved', 'rejected']);
             $table->unsignedBigInteger('approved_by');
 
-            $table->foreign('borrower_id')->references('id')->on('users');
-            $table->foreign('item_id')->references('id')->on('items');
+            $table->foreign('borrower_id')->references('id')->on('users')->cascadeOnDelete();
+            $table->foreign('item_id')->references('id')->on('items')->cascadeOnDelete();
             $table->timestamps();
         });
     }

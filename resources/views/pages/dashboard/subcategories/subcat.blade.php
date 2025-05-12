@@ -15,17 +15,17 @@
                             d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
                     </svg>
                 </div>
-                <input type="text" id="table-search-users"
+                <input type="text" id="table-search-categories"
                     class="block p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500"
-                    placeholder="Search for users">
+                    placeholder="Search for sub-category">
             </div>
             <button type="button"
                 class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"><a
-                    href="{{ route('createUser') }}">+
-                    Add New User</a></button>
+                    href="{{ route('createSubCat') }}">+
+                    Add New Sub-Category</a></button>
         </div>
 
-        <table class="w-full text-sm text-left rtl:text-right text-gray-500" id="user-table">
+        <table class="w-full text-sm text-left rtl:text-right text-gray-500" id="subcategory-table">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50">
                 <tr>
                     <th scope="col" class="p-4">
@@ -36,13 +36,12 @@
                         </div>
                     </th>
                     <th scope="col" class="px-6 py-3">Name</th>
-                    <th scope="col" class="px-6 py-3">Role</th>
-                    <th scope="col" class="px-6 py-3">Class Code</th>
+                    <th scope="col" class="px-6 py-3">Category Id</th>
                     <th scope="col" class="px-6 py-3">Action</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($users as $user)
+                @foreach ($subcategories as $subcategory)
                 <tr class="bg-white border-b border-gray-200 hover:bg-gray-50">
                     <td class="w-4 px-4 py-4">
                         <div class="flex items-center">
@@ -51,30 +50,28 @@
                             <label for="checkbox-table-search-1" class="sr-only">checkbox</label>
                         </div>
                     </td>
-                    <th scope="row" class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap">
-                        <img class="w-10 h-10 rounded-full" src="{{ asset('assets/user.png') }}" alt="user image">
-                        <div class="ps-3">
-                            <div class="text-base font-semibold">{{ $user->name }}</div>
-                            <div class="font-normal text-gray-500">{{ $user->email }}</div>
-                        </div>
-                    </th>
                     <td class="px-6 py-4 align-middle">
-                        {{ $user->role }}
+                        <p class="font-normal text-black text-lg">
+                            {{ $subcategory->name}}
+
+                        </p>
                     </td>
                     <td class="px-6 py-4 align-middle">
-                        <div class="flex items-center">
-                            {{ $user->class_code ?? 'null' }}
-                        </div>
+                        <p class="font-normal text-black text-lg">
+                            {{ $subcategory->category_id}}
+
+                        </p>
                     </td>
                     <td class="px-6 py-4 flex flex-col space-y-1">
-                        <a href="/dashboard/users/edit/{{ $user->id }}" class="font-medium text-white hover:underline">
+                        <a href="/dashboard/categories/edit/{{ $subcategory->id }}"
+                            class="font-medium text-white hover:underline">
                             <button class="bg-yellow-400 p-2 rounded-lg">
-                                Edit user
+                                Edit subcategory
                             </button>
                         </a>
 
-                        <form action="/api/users/delete/{{ $user->id }}" method="post"
-                            onsubmit="return confirm('Are you sure you want to delete {{ $user->name }}?');">
+                        <form action="/api/categories/delete/{{ $subcategory->id }}" method="post"
+                            onsubmit="return confirm('Are you sure you want to delete {{ $subcategory->name }}?');">
                             @csrf
                             @method('DELETE')
                             <button type="submit"
@@ -89,9 +86,9 @@
 </div>
 
 <script>
-    document.getElementById("table-search-users").addEventListener("keyup", function () {
+    document.getElementById("table-search-categories").addEventListener("keyup", function () {
         const query = this.value.toLowerCase();
-        const rows = document.querySelectorAll("#user-table tbody tr");
+        const rows = document.querySelectorAll("#subcategory-table tbody tr");
 
         rows.forEach(row => {
             const text = row.textContent.toLowerCase();

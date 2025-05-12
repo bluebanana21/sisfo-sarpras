@@ -21,23 +21,30 @@ class CategoryController extends Controller
 
         Category::create($validatedData);
 
-        return response()->json(['message'=>'succesfull', 'category'=>$validatedData], 201);
+        return redirect()->route('categories');
     }
 
     public function deleteCat(Request $request, $id){
         $category = Category::find($id);
         $category->delete();
 
-        return response()->json(['message'=> 'succesfully delete']);
+        return redirect()->route('categories');
     }
 
     public function updateCat(Request $request, $id){
          $validatedData = $request->validate([
-            'name'=>['required'],
+            'name'=>['sometimes', 'string'],
         ]);
-        $category = Category::find($id);
+
+        if (empty($validatedData)) {
+            return response()->json([
+                'message' => 'At least one column of data must be provided.'
+            ], 422);
+        }
+
+        $category = Category::findOrFail($id);
         $category->update($validatedData);
-        return response()->json(['message'=>'succesfull update', 'category'=>$validatedData], 204);
+        return redirect()->route('categories');
     }
 
 }

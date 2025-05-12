@@ -17,9 +17,9 @@ return new class extends Migration
             $table->unsignedBigInteger('borrowing_id');
             $table->unsignedBigInteger('return_id');
 
-            $table->foreign('item_id')->references('id')->on('items');
-            $table->foreign('borrowing_id')->references('id')->on('borrowings');
-            $table->foreign('return_id')->references('id')->on('item_returns');
+            $table->foreign('item_id')->references('id')->on('items')->cascadeOnDelete();
+            $table->foreign('borrowing_id')->references('id')->on('borrowings')->cascadeOnDelete();
+            $table->foreign('return_id')->references('id')->on('item_returns')->cascadeOnDelete();
 
             $table->timestamps();
         });

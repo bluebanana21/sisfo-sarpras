@@ -58,7 +58,7 @@ Route::get('/categories', [CategoryController::class, 'getAll']);
 
 Route::get('/categories/{id}', [CategoryController::class. 'getById']);
 
-Route::post('/categories/create', [CategoryController::class, 'createCat']);
+Route::post('/categories/create', [CategoryController::class, 'createCat'])->name('api.cat.create');
 
 Route::delete('/categories/delete/{id}', [CategoryController::class, 'deleteCat']);
 
@@ -70,7 +70,7 @@ Route::get('/subcat', [SubCategoriesController::class, 'getAll']);
 
 Route::get('/subcat/{id}', [SubCategoriesController::class. 'getById']);
 
-Route::post('/subcat/create', [SubCategoriesController::class, 'createSubcat']);
+Route::post('/subcat/create', [SubCategoriesController::class, 'createSubcat'])->name('api.subcat.create');
 
 Route::delete('/subcat/delete/{id}', [SubCategoriesController::class, 'deleteSubcat']);
 

@@ -7,7 +7,7 @@
         <form class="space-y-6" action="/api/users/update/{{$user->id}}" method="POST">
             @method('PATCH')
             <div>
-                <h1 class="py-4 text-lg font-bold">Create a new user</h1>
+                <h1 class="py-4 text-lg font-bold">Edit User</h1>
 
                 <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
                 <input type="text" id="name" name="name" value="{{$user->name}}"

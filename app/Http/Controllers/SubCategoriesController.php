@@ -21,7 +21,7 @@ class SubCategoriesController extends Controller
 
         SubCategory::create($validatedData);
 
-        return response()->json(['message'=>'succesfull', 'category'=>$validatedData], 201);
+        return redirect()->route('subcategories');
     }
 
     public function deleteSubcat (Request $request, $id){

@@ -31,7 +31,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/dashboard/returns', [AdminController::class, 'returns'])->name('returns');
 
-    Route::get('/dashboard/categories', [CategoryController::class, 'categories'])->name('categories');
+    Route::get('/dashboard/categories', [AdminController::class, 'categories'])->name('categories');
 
     Route::get('/dashboard/subcategories', [AdminController::class, 'subcategories'])->name('subcategories');
 
@@ -47,9 +47,9 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/dashboard/returns/create', [AdminController::class, 'returns']);
 
-    Route::get('/dashboard/categories/create', [CategoryController::class, 'categories']);
+    Route::get('/dashboard/categories/create', [AdminController::class, 'createCat'])->name('createCat');
 
-    Route::get('/dashboard/subcategories/create', [AdminController::class, 'subcategories']);
+    Route::get('/dashboard/subcategories/create', [AdminController::class, 'createSubcat'])->name('createSubCat');
 
     // EDIT FORMS
     Route::get('/dashboard/overview/edit/{id}', [AdminController::class, 'overview']);
@@ -60,10 +60,10 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/dashboard/borrows/edit/{id}', [AdminController::class, 'borrows']);
 
-    Route::get('/dashboard/returns/edit/{id}', [AdminController::class, 'returns']);
+    Route::get('/dashboard/returns/edit/{id}', [AdminController::class, 'editReturns']);
 
-    Route::get('/dashboard/categories/edit/{id}', [CategoryController::class, 'categories']);
+    Route::get('/dashboard/categories/edit/{id}', [AdminController::class, 'editCat']);
 
-    Route::get('/dashboard/subcategories/edit/{id}', [AdminController::class, 'subcategories']);
+    Route::get('/dashboard/subcategories/edit/{id}', [AdminController::class, 'editSubcat']);
 });
 
