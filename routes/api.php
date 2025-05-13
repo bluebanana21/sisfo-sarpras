@@ -36,9 +36,9 @@ Route::get('/classes', [SchoolClassController::class, 'getAll']);
 
 Route::get('/classes/{id}', [SchoolClassController::class. 'getById']);
 
-Route::post('/classes/create', [SchoolClassController::class, 'createClasses']);
+Route::post('/classes/create', [SchoolClassController::class, 'createClasses'])->name('api.class.create');
 
-Route::delete('/classes/delete/{id}', [SchoolClassController::class, 'deleteClasses']);
+Route::delete('/classes/delete/{class_code}', [SchoolClassController::class, 'deleteClasses']);
 
 Route::patch('/classes/update/{id}', [SchoolClassController::class,'updateClasses']);
 

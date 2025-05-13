@@ -27,6 +27,8 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/dashboard/users', [AdminController::class, 'users'])->name('users');
 
+    Route::get('/dashboard/classes', [AdminController::class, 'schoolClasses'])->name('classes');
+
     Route::get('/dashboard/borrows', [AdminController::class, 'borrows'])->name('borrows');
 
     Route::get('/dashboard/returns', [AdminController::class, 'returns'])->name('returns');
@@ -42,6 +44,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard/items/create', [AdminController::class, 'items']);
 
     Route::get('/dashboard/users/create', [AdminController::class, 'createUser'])->name('createUser');
+
+    Route::get('/dashboard/classes/create', [AdminController::class, 'createClass'])->name('createClass');
 
     Route::get('/dashboard/borrows/create', [AdminController::class, 'borrows']);
 

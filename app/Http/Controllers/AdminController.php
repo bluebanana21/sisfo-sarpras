@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Borrowing;
 use App\Models\Category;
+use App\Models\Item;
 use App\Models\SchoolClass;
 use App\Models\SubCategory;
 use App\Models\User;
+use App\Models\ReturnItem;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -16,7 +19,8 @@ class AdminController extends Controller
     }
 
     public function items(){
-        return view('pages.dashboard.items.items');
+        $items = Item::all();
+        return view('pages.dashboard.items.items', compact('items'));
     }
     public function users(){
         $users = User::all();
@@ -24,11 +28,21 @@ class AdminController extends Controller
         return view('pages.dashboard.users.users', compact('users'));
     }
 
-    public function borrows(){
-        return view('pages.dashboard.borrows.borrows');
+    public function schoolClasses(){
+        $classes = SchoolClass::all();
+
+        return view('pages.dashboard.classes.classes', compact('classes'));
     }
+
+    public function borrows(){
+        $borrows = Borrowing::all();
+        return view('pages.dashboard.borrows.borrows', compact('borrows'));
+    }
+
     public function returns(){
-        return view('pages.dashboard.returns.returns');
+        $returns = ReturnItem::all();
+
+        return view('pages.dashboard.returns.returns', compact('returns'));
     }
 
     public function categories(){
@@ -48,6 +62,10 @@ class AdminController extends Controller
         $classes = SchoolClass::all();
 
         return view('pages.dashboard.users.create', compact('classes'));
+    }
+
+    public function createClass(){
+        return view('pages.dashboard.classes.create');
     }
 
     public function createCat(){

@@ -21,15 +21,15 @@ class SchoolClassController extends Controller
 
         SchoolClass::create($validated);
 
-        return response()->json(['item successfully created', 'item'=>$validated], 201);
+        return redirect()->route('classes');
 
     }
 
-    public function deleteClasses($id){
-        $data = SchoolClass::find($id);
+    public function deleteClasses($class_code){
+        $data = SchoolClass::find($class_code);
 
         $data->delete();
 
-        return response()->json(['class succesfully deleted'=>$data],  200);
+        return redirect()->route('classes');
     }
 }

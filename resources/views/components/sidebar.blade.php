@@ -62,10 +62,9 @@
                     <span class="ms-3 whitespace-nowrap">Returns</span>
                 </a>
             </li>
-            <!-- Items -->
 
 
-            <!-- Users -->
+            <!-- Users Dropdown -->
             <li>
                 <button type="button"
                     class="flex items-center w-full p-2 text-white transition duration-75 rounded-lg group hover:bg-white hover:text-blue-700"
@@ -90,7 +89,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{route('users')}}"
+                        <a href="{{route('classes')}}"
                             class="flex items-center w-full p-2 text-white transition duration-75 rounded-lg pl-11 group hover:bg-white hover:text-blue-700">
                             School Classes
                         </a>
