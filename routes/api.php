@@ -15,6 +15,7 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
+Route::post('/login', [AuthController::class, 'apiLogin']);
 
 Route::post('/register', [AuthController::class, 'register'])->name('register');
 
@@ -25,7 +26,7 @@ Route::get('/items', [ItemController::class, 'getAll']);
 
 Route::get('/items/{id}', [ItemController::class. 'getById']);
 
-Route::post('/items/create', [ItemController::class, 'createItems']);
+Route::post('/items/create', [ItemController::class, 'createItems'])->name('api.item.create');
 
 Route::delete('/items/delete/{id}', [ItemController::class, 'deleteItems']);
 

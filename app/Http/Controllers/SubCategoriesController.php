@@ -28,7 +28,7 @@ class SubCategoriesController extends Controller
         $category = SubCategory::find($id);
         $category->delete();
 
-        return response()->json(['message'=> 'succesfully delete']);
+        return redirect()->route('subcategories');
     }
 
     public function updateSubcat (Request $request, $id){
@@ -48,10 +48,7 @@ class SubCategoriesController extends Controller
     $category = SubCategory::findOrFail($id);
     $category->update($validatedData);
 
-    return response()->json([
-        'message' => 'Successful update',
-        'category' => $category
-    ], 200);
+        return redirect()->route('subcategories');
     }
 
 }

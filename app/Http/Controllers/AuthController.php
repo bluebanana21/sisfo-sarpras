@@ -53,12 +53,35 @@ class AuthController extends Controller
         if (Auth::attempt($validated)) {
             $request->session()->regenerate();
 
+            //return response()->json(['login successfull'], 200);
             return redirect()->intended('/dashboard/overview');
         }
 
         return back()->with('loginErrpr', 'Login Failed!');
 
+    }
+
+public function apiLogin(Request $request){
+        $validated = $request->validate([
+            'email'=> 'required|string|email',
+            'password'=> 'required|string',
+
+        ]);
+
+        if (!Auth::attempt($request->only('email', 'password'))) {
+            return response()->json(['message'=>'invalid credentials'], 401);
+        }
+
+        $user = Auth::user();
+        $token = $user->createToken('api-token')->plainTextToken;
+
+        return response()->json([
+            'access_token'=>$token,
+            'token_type'=>'Bearer',
+            'user'=>$user
+        ]);
      }
+
 
     public function logout(Request $request){
         Auth::logout();

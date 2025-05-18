@@ -11,7 +11,7 @@ Route::get('/', function () {
 
 // AUTH ROUTES
 
-Route::post('/login', [AuthController::class, 'login']);
+Route::post('/login', [AuthController::class, 'login'])->middleware('web');
 
 Route::get('/login', [AuthController::class, 'showLogin']);
 
@@ -41,7 +41,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/dashboard/overview/create', [AdminController::class, 'overview']);
 
-    Route::get('/dashboard/items/create', [AdminController::class, 'items']);
+    Route::get('/dashboard/items/create', [AdminController::class, 'createItem'])->name('createItem');
 
     Route::get('/dashboard/users/create', [AdminController::class, 'createUser'])->name('createUser');
 
@@ -68,6 +68,6 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/dashboard/categories/edit/{id}', [AdminController::class, 'editCat']);
 
-    Route::get('/dashboard/subcategories/edit/{id}', [AdminController::class, 'editSubcat']);
+    Route::get('/dashboard/subcat/edit/{id}', [AdminController::class, 'editSubcat']);
 });
 

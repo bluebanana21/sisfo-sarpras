@@ -19,7 +19,8 @@ class AdminController extends Controller
     }
 
     public function items(){
-        $items = Item::all();
+        $items = Item::with(['subcategory'])->get();
+
         return view('pages.dashboard.items.items', compact('items'));
     }
     public function users(){
@@ -68,6 +69,12 @@ class AdminController extends Controller
         return view('pages.dashboard.classes.create');
     }
 
+    public function createItem(){
+        $subcat = SubCategory::all();
+
+        return view('pages.dashboard.items.create', compact('subcat'));
+    }
+
     public function createCat(){
         return view('pages.dashboard.categories.create');
     }
@@ -89,5 +96,11 @@ class AdminController extends Controller
     public function editCat($id){
         $category = Category::findOrFail($id);
         return view('pages.dashboard.categories.edit', compact('category'));
+    }
+
+    public function editSubCat($id){
+        $subcat = SubCategory::findOrFail($id);
+        $categories = Category::all();
+        return view('pages.dashboard.subcategories.edit', compact('subcat', 'categories'));
     }
 }

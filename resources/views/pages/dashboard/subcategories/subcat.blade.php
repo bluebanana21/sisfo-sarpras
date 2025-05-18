@@ -63,14 +63,14 @@
                         </p>
                     </td>
                     <td class="px-6 py-4 flex flex-col space-y-1">
-                        <a href="/dashboard/categories/edit/{{ $subcategory->id }}"
+                        <a href="/dashboard/subcat/edit/{{ $subcategory->id }}"
                             class="font-medium text-white hover:underline">
                             <button class="bg-yellow-400 p-2 rounded-lg">
                                 Edit subcategory
                             </button>
                         </a>
 
-                        <form action="/api/categories/delete/{{ $subcategory->id }}" method="post"
+                        <form action="/api/subcat/delete/{{ $subcategory->id }}" method="post"
                             onsubmit="return confirm('Are you sure you want to delete {{ $subcategory->name }}?');">
                             @csrf
                             @method('DELETE')
