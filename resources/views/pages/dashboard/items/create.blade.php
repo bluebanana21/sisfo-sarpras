@@ -31,7 +31,7 @@
                     class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 text-sm">
             </div>
             <div>
-                <label for="item_type" class="block text-sm font-medium text-gray-700">Role</label>
+                <label for="item_type" class="block text-sm font-medium text-gray-700">Item Type</label>
                 <select id="item_type" name="item_type_id"
                     class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 text-sm">
                     <option value="" disabled selected>Select the item type</option>

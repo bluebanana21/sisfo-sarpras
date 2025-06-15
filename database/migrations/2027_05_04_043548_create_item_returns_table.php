@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('item_returns', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('borrowing_id');
-            $table->unsignedBigInteger('returned_by');
+            $table->enum('return_status', ['returned', 'late', 'lost', 'damaged', 'unconfirmed']);
+            $table->string('fine')->nullable();
 
             $table->foreign('borrowing_id')->references('id')->on('borrowings')->cascadeOnDelete();
-            $table->foreign('returned_by')->references('id')->on('users')->cascadeOnDelete();
             $table->timestamps();
         });
     }

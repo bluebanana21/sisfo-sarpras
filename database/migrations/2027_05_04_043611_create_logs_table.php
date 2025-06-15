@@ -14,12 +14,11 @@ return new class extends Migration
         Schema::create('logs', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('item_id');
-            $table->unsignedBigInteger('borrowing_id');
-            $table->unsignedBigInteger('return_id');
+            $table->unsignedBigInteger('user_id');
+            $table->enum('status', ['request', 'approved', 'denied', 'returned']);
 
+            $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
             $table->foreign('item_id')->references('id')->on('items')->cascadeOnDelete();
-            $table->foreign('borrowing_id')->references('id')->on('borrowings')->cascadeOnDelete();
-            $table->foreign('return_id')->references('id')->on('item_returns')->cascadeOnDelete();
 
             $table->timestamps();
         });

@@ -3,63 +3,68 @@
 namespace App\Http\Controllers;
 
 use App\Models\Borrowing;
+use App\Models\Item;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BorrowingController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
+    public function getAll(){
+        $borrows = Borrowing::all();
+        $userId = Auth::id();
+
+        return view('pages.dashboard.borrowing.borrows', compact('borrows','userId'));
+
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+    public function getAllApi(){
+        $borrows = Borrowing::all();
+
+        return response()->json(['message'=>'successfully fetched data', 'data'=>$borrows], 200);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
+    public function getByItem($itemId){
+        $borrowItem = Borrowing::where('item_id', $itemId)->get();
+
+        return response()->json(['message'=>'successfully got by item id', 'data'=>$borrowItem], 200);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Borrowing $borrowing)
-    {
-        //
+    public function requestBorrow(Request $request){
+
+        $validated = $request->validate([
+            'borrower_id' => 'required',
+            'item_id' => 'required',
+            'reason' => 'required',
+            'return_date' => 'required',
+            'approval_status' => 'required',
+            'ongoing_status' => 'nullable',
+            'approved_by' => 'nullable'
+        ]);
+
+        Borrowing::create($validated);
+
+        return response(['message' => 'borrowing request sent','data' => $validated], 201);
+
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Borrowing $borrowing)
-    {
-        //
+    public function approveRequest($id, $userId, $itemId){
+        Borrowing::where('id', $id)->update(['approval_status'=>'approved', 'approved_by'=> $userId, 'ongoing_status' => 'ongoing']);
+
+        Item::where('id', $itemId)->update(['status'=>'borrowed']);
+
+        $borrows = Borrowing::all();
+        $userId = Auth::id();
+
+        return view('pages.dashboard.borrowing.borrows', compact('borrows','userId'));
+
+
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Borrowing $borrowing)
-    {
-        //
+    public function denyRequest($id, $userId){
+         Borrowing::where('id', $id)->update(['approval_status'=>'rejected', 'approved_by'=>$userId]);
+
+
+
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Borrowing $borrowing)
-    {
-        //
-    }
 }

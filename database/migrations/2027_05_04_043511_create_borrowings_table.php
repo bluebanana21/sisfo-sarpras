@@ -16,9 +16,12 @@ return new class extends Migration
             $table->unsignedBigInteger('borrower_id');
             $table->unsignedBigInteger('item_id');
             $table->string('reason');
+            $table->dateTime('return_date');
             $table->enum('approval_status', ['pending', 'approved', 'rejected']);
-            $table->unsignedBigInteger('approved_by');
+            $table->enum('ongoing_status', ['ongoing', 'finished'])->nullable();
+            $table->unsignedBigInteger('approved_by')->nullable();
 
+            $table->foreign('approved_by')->references('id')->on('users')->cascadeOnDelete();
             $table->foreign('borrower_id')->references('id')->on('users')->cascadeOnDelete();
             $table->foreign('item_id')->references('id')->on('items')->cascadeOnDelete();
             $table->timestamps();

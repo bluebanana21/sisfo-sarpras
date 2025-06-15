@@ -5,11 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Borrowing;
 use App\Models\Category;
 use App\Models\Item;
+use App\Models\ItemReturn;
 use App\Models\SchoolClass;
 use App\Models\SubCategory;
 use App\Models\User;
-use App\Models\ReturnItem;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
@@ -36,14 +36,16 @@ class AdminController extends Controller
     }
 
     public function borrows(){
+        $userId = Auth::id();
         $borrows = Borrowing::all();
-        return view('pages.dashboard.borrows.borrows', compact('borrows'));
+        return view('pages.dashboard.borrowing.borrows', compact('borrows', 'userId'));
     }
 
     public function returns(){
-        $returns = ReturnItem::all();
+        $returns = ItemReturn::with(['borrowing'])->get();
+        $userId = Auth::id();
 
-        return view('pages.dashboard.returns.returns', compact('returns'));
+        return view('pages.dashboard.returns.returns', compact('returns', 'userId'));
     }
 
     public function categories(){
@@ -91,6 +93,12 @@ class AdminController extends Controller
         $classes = SchoolClass::all();
 
         return view('pages.dashboard.users.edit', compact('user', 'classes'));
+    }
+
+    public function editItem($id){
+        $item = Item::findOrFail($id);
+        $subcats = SubCategory::all();
+        return view('pages.dashboard.items.edit', compact('item', 'subcats'));
     }
 
     public function editCat($id){

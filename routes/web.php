@@ -56,9 +56,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard/subcategories/create', [AdminController::class, 'createSubcat'])->name('createSubCat');
 
     // EDIT FORMS
-    Route::get('/dashboard/overview/edit/{id}', [AdminController::class, 'overview']);
 
-    Route::get('/dashboard/items/edit/{id}', [AdminController::class, 'items']);
+    Route::get('/dashboard/items/edit/{id}', [AdminController::class, 'editItem']);
 
     Route::get('/dashboard/users/edit/{id}', [AdminController::class, 'editUsers']);
 
